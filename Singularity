@@ -24,7 +24,9 @@ Stage: build
     	wget make tar gzip bzip2 gsl texinfo\
     	mercurial openssh-clientsblas blas-devel lapack gcc-c++ \
         file expat-devel perl-XML* patch gmp gmp-devel git \
-        zlib-devel gcc mercurial openssh-clients gfortran
+        zlib-devel gcc mercurial openssh-clients gfortran \
+	centos-release-scl
+    yum -y install devtoolset-8
     cpanm -i Config::Tiny YAML Cwd DateTime \
 	LaTeX::Encode NestedMap Scalar::Util \
 	Data::Dumper Term::ANSIColor Module::New::File::Changes \
@@ -33,8 +35,6 @@ Stage: build
 	XML::Validator::Schema List::MoreUtils \
 	File::Copy File::Slurp File::Next XML::Simple \
 	XML::SAX::Expat XML::SAX::ParserFactory 
-    yum -y install centos-release-scl
-    yum -y install devtoolset-8
     scl enable devtoolset-8 bash
     
     # install GFortran
