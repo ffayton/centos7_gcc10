@@ -18,8 +18,8 @@ Stage: build
     export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib64:/usr/local/lib
     yum -y update
     yum -y install epel-release
-    yum -y install perl perl-App-cpanminus
-    yum -y install vim wget make tar gzip bzip2 gsl texinfo\
+    yum -y install glibc-devel.i686 glibc-devel vim flex \
+    	wget make tar gzip bzip2 gsl texinfo\
     	mercurial openssh-clientsblas blas-devel lapack gcc-c++ \
         file expat-devel perl-XML* patch gmp gmp-devel git \
         zlib-devel gcc mercurial openssh-clients gfortran
@@ -41,7 +41,7 @@ Stage: build
     export PATH=/usr/local/bin:$PATH
     cd gcc
     ./contrib/download_prerequisites
-    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran,go 
+    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran,go --enable-multilib
     make -j2
     make install 
     
