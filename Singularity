@@ -57,6 +57,14 @@ Stage: build
     which gfortran
     gfortran -v
     
+    # install FGSL v0.9.4
+    cd /opt
+    wget https://www.lrz.de/services/software/mathematik/gsl/fortran/download/fgsl-0.9.4.tar.gz
+    tar -vxzf fgsl-0.9.4.tar.gz
+    cd fgsl-0.9.4
+    ./configure --gsl /usr --f90 gfortran --prefix /usr/local
+    make
+    make install
     
 %labels
     Author ffayton@carnegiescience.edu
