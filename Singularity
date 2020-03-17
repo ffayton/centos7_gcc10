@@ -8,14 +8,14 @@ Stage: build
     export LC_ALL=C
     export INSTALL_PATH=/usr/local
     export PATH=/usr/local:$PATH
-    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64
     export PERL_MM_USE_DEFAULT=1
-    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib64:/usr/local/lib
+    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
 
 %post
     NOW=`date`
     echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
-    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/lib64:/usr/local/lib
+    echo "export PATH=/usr/local/bin:$PATH" >> $SINGULARITY_ENVIRONMENT
+    echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib " >> $SINGULARITY_ENVIRONMENT
     yum -y update
     yum -y install epel-release
     yum -y install perl perl-App-cpanminus \
