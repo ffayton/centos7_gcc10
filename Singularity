@@ -95,12 +95,12 @@ Stage: build
     make install
 
     # install ANN 1.1.2 (optional)
-    cd /opt
-    wget http://www.cs.umd.edu/~mount/ANN/Files/1.1.2/ann_1.1.2.tar.gz
-    tar xvfz ann_1.1.2.tar.gz
-    cd ann_1.1.2
-    make linux-g++
-    cp bin/* /usr/local/bin/
+#    cd /opt
+#    wget http://www.cs.umd.edu/~mount/ANN/Files/1.1.2/ann_1.1.2.tar.gz
+#    tar xvfz ann_1.1.2.tar.gz
+#    cd ann_1.1.2
+#    make linux-g++
+#    cp bin/* /usr/local/bin/
 
 %labels
     Author ffayton@carnegiescience.edu
