@@ -21,7 +21,7 @@ Stage: build
     yum -y install perl perl-App-cpanminus \
     	vim wget make tar gzip bzip2 gsl gsl-devel texinfo \
 	glibc-devel.i686 glibc-devel vim flex \
-    	wget make tar gzip bzip2 gsl texinfo\
+    	wget make tar gzip bzip2 gsl texinfo hostname \
     	mercurial openssh-clientsblas blas-devel lapack gcc-c++ \
         file expat-devel perl-XML* patch gmp gmp-devel git \
         zlib-devel gcc mercurial openssh-clients gfortran \
@@ -41,6 +41,7 @@ Stage: build
     cd /opt
     wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.15.tar.bz2
     tar xjvf isl-0.15.tar.bz2
+    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
     cd isl-0.15
     ./configure 
     make 
