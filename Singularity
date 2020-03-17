@@ -7,7 +7,7 @@ Stage: build
 %environment
     export LC_ALL=C
     export INSTALL_PATH=/usr/local
-    export PATH=/usr/local:$PATH
+    export PATH=/usr/local:/usr/local/gcc-10/bin:$PATH
     export PERL_MM_USE_DEFAULT=1
     export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
 
@@ -38,17 +38,15 @@ Stage: build
     scl enable devtoolset-8 bash
     
     # install GFortran
-    cd /opt
-    git clone git://gcc.gnu.org/git/gcc.git
-    export PATH=/usr/local/bin:$PATH
-    cd gcc
-    ./contrib/download_prerequisites
-    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
-    make -j2
-    make DESTDIR=/usr/local install 
+    cd /usr/local
+    wget http://gfortran.meteodat.ch/download/x86_64/snapshots/gcc-10-20200308.tar.xz
+    tar xvfJ gcc-10-20200308.tar.xz
+    export PATH=/usr/local/gcc-10/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/gcc-10/lib:/usr/local/gcc-10/lib64:$LD_LIBRARY_PATH
+    echo CHECKING WHICH GFORTRAN
+    which gfortran
+    gfortran -v
     
-
-
 %labels
     Author ffayton@carnegiescience.edu
     Version v0.0.1
