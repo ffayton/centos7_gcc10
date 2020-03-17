@@ -7,14 +7,14 @@ Stage: build
 %environment
     export LC_ALL=C
     export INSTALL_PATH=/usr/local
-    export PATH=/usr/local:/usr/local/gcc-10/bin:$PATH
+    export PATH=/usr/local/bin:/usr/local/gcc-10/bin:$PATH
     export PERL_MM_USE_DEFAULT=1
     export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
 
 %post
     NOW=`date`
     echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
-    echo "export PATH=/usr/local/bin:$PATH" >> $SINGULARITY_ENVIRONMENT
+    echo "export PATH=/usr/local/bin:/usr/local/gcc-10/bin:$PATH" >> $SINGULARITY_ENVIRONMENT
     echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib " >> $SINGULARITY_ENVIRONMENT
     yum -y update
     yum -y install epel-release
@@ -37,6 +37,15 @@ Stage: build
 	XML::SAX::Expat XML::SAX::ParserFactory 
     scl enable devtoolset-8 bash
     
+    # install ISL
+    cd /opt
+    wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.15.tar.bz2
+    tar xjvf isl-0.15.tar.bz2
+    cd isl-0.15
+    ./configure 
+    make 
+    make install
+    
     # install GFortran
     cd /usr/local
     wget http://gfortran.meteodat.ch/download/x86_64/snapshots/gcc-10-20200308.tar.xz
@@ -46,6 +55,42 @@ Stage: build
     echo CHECKING WHICH GFORTRAN
     which gfortran
     gfortran -v
+    
+    # install FGSL v0.9.4
+    cd /opt
+    wget https://www.lrz.de/services/software/mathematik/gsl/fortran/download/fgsl-0.9.4.tar.gz
+    tar -vxzf fgsl-0.9.4.tar.gz
+    cd fgsl-0.9.4
+    ./configure --gsl /usr --f90 gfortran --prefix /usr/local
+    make
+    make test
+    make install
+
+    # install HDF5 v1.8.20
+    cd /opt
+    wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.20/src/hdf5-1.8.20.tar.gz
+    tar -vxzf hdf5-1.8.20.tar.gz
+    cd hdf5-1.8.20
+    F9X=gfortran ./configure --prefix=/usr/local --enable-fortran --enable-production
+    make
+    make install
+
+    # install FoX v4.1.0
+    cd /opt
+    wget https://github.com/andreww/fox/archive/4.1.0.tar.gz
+    tar xvfz 4.1.0.tar.gz
+    cd fox-4.1.0
+    ./configure
+    make
+    make install
+
+    # install ANN 1.1.2 (optional)
+    cd /opt
+    wget http://www.cs.umd.edu/~mount/ANN/Files/1.1.2/ann_1.1.2.tar.gz
+    tar xvfz ann_1.1.2.tar.gz
+    cd ann_1.1.2
+    make linux-g++
+    cp bin/* /usr/local/bin/
     
 %labels
     Author ffayton@carnegiescience.edu
