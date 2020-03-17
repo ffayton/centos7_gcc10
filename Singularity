@@ -43,7 +43,7 @@ Stage: build
     export PATH=/usr/local/bin:$PATH
     cd gcc
     ./contrib/download_prerequisites
-    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran,go --enable-multilib
+    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
     make -j2
     make install 
     
