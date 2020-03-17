@@ -19,7 +19,7 @@ Stage: build
     yum -y update
     yum -y install epel-release
     yum -y install perl perl-App-cpanminus \
-    	vim wget make tar gzip bzip2 gsl texinfo \
+    	vim wget make tar gzip bzip2 gsl gsl-devel texinfo \
 	glibc-devel.i686 glibc-devel vim flex \
     	wget make tar gzip bzip2 gsl texinfo\
     	mercurial openssh-clientsblas blas-devel lapack gcc-c++ \
