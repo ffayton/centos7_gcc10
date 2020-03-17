@@ -45,7 +45,7 @@ Stage: build
     ./contrib/download_prerequisites
     ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
     make -j2
-    make install 
+    make DESTDIR=/usr/local install 
     
 
 
