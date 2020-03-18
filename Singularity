@@ -35,7 +35,7 @@ Stage: build
 	XML::Validator::Schema List::MoreUtils \
 	File::Copy File::Slurp File::Next XML::Simple \
 	XML::SAX::Expat XML::SAX::ParserFactory 
-    scl enable devtoolset-8 bash
+    # scl enable devtoolset-8 bash
     
     # install ISL
     cd /opt
@@ -95,6 +95,16 @@ Stage: build
     cd ann_1.1.2
     make linux-g++
     cp bin/* /usr/local/bin/
+     
+    # install Galacticus
+    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
+    export GALACTICUS_EXEC_PATH=/usr/local/galacticus/
+    export GALACTICUS_DATA_PATH=/usr/local/galacticus_datasets
+    cd /usr/local
+    git clone https://github.com/galacticusorg/galacticus.git
+    git clone https://github.com/galacticusorg/datasets.git galacticus_datasets
+    cd /usr/local/galacticus
+    make -j2 Galacticus.exe
      
 %labels
     Author ffayton@carnegiescience.edu
