@@ -104,7 +104,7 @@ Stage: build
     git clone https://github.com/galacticusorg/galacticus.git
     git clone https://github.com/galacticusorg/datasets.git galacticus_datasets
     cd /usr/local/galacticus
-    make -j4 Galacticus.exe
+    make Galacticus.exe
      
 %labels
     Author ffayton@carnegiescience.edu
