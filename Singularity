@@ -14,7 +14,7 @@ Stage: build
 %post
     NOW=`date`
     echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
-    echo "export PATH=/bin:/sbin:/usr/local/bin:/usr/local/gcc-10/bin:$PATH" >> $SINGULARITY_ENVIRONMENT
+    echo "export PATH=/usr/local/bin:/usr/local/gcc-10/bin:$PATH" >> $SINGULARITY_ENVIRONMENT
     echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib " >> $SINGULARITY_ENVIRONMENT
     yum -y update
     yum -y install epel-release
@@ -49,13 +49,13 @@ Stage: build
     
     # install GFortran
     cd /usr/local
-    if [ -f /usr/local/gcc-10-20200308.tar.xz ] ; then 
+    if [ -f /usr/local/gcc-10.tar.xz ] ; then 
         echo "Download Done"
     else
-        wget http://gfortran.meteodat.ch/download/x86_64/snapshots/gcc-10-20200308.tar.x
+        wget http://gfortran.meteodat.ch/download/x86_64/snapshots/gcc-10.tar.xz
     fi
-    tar xvfJ gcc-10-20200308.tar.xz
-    export PATH=/bin:/usr/local/gcc-10/bin:$PATH
+    tar xvf gcc-10.tar.xz
+    export PATH=/usr/local/gcc-10/bin:/bin:$PATH
     export LD_LIBRARY_PATH=/usr/local/gcc-10/lib:/usr/local/gcc-10/lib64:$LD_LIBRARY_PATH
     echo CHECKING WHICH GFORTRAN
     which gfortran
