@@ -76,7 +76,7 @@ Stage: build
     tar -vxzf hdf5-1.8.20.tar.gz
     cd hdf5-1.8.20
     ./configure --prefix=/usr/local --enable-fortran --enable-production
-    make
+    make -j4
     make install
 
     # install FoX v4.1.0
@@ -104,7 +104,7 @@ Stage: build
     git clone https://github.com/galacticusorg/galacticus.git
     git clone https://github.com/galacticusorg/datasets.git galacticus_datasets
     cd /usr/local/galacticus
-    make -j2 Galacticus.exe
+    make -j4 Galacticus.exe
      
 %labels
     Author ffayton@carnegiescience.edu
