@@ -70,6 +70,15 @@ Stage: build
     make
     make install
     
+    # install HDF5 v1.8.20
+    cd /opt
+    wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.20/src/hdf5-1.8.20.tar.gz
+    tar -vxzf hdf5-1.8.20.tar.gz
+    cd hdf5-1.8.20
+    F9X=gfortran ./configure --prefix=/usr/local --enable-fortran --enable-production
+    make
+    make install
+    
 %labels
     Author ffayton@carnegiescience.edu
     Version v0.0.1
