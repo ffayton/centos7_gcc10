@@ -49,7 +49,11 @@ Stage: build
     
     # install GFortran
     cd /usr/local
-    wget http://gfortran.meteodat.ch/download/x86_64/snapshots/gcc-10-20200308.tar.xz
+    if [ -f /usr/local/gcc-10-20200308.tar.xz ] ; then 
+        echo "Download Done"
+    else
+        wget http://gfortran.meteodat.ch/download/x86_64/snapshots/gcc-10-20200308.tar.x
+    fi
     tar xvfJ gcc-10-20200308.tar.xz
     export PATH=/usr/local/gcc-10/bin:$PATH
     export LD_LIBRARY_PATH=/usr/local/gcc-10/lib:/usr/local/gcc-10/lib64:$LD_LIBRARY_PATH
