@@ -48,18 +48,14 @@ Stage: build
     make install
     
     # install GFortran
-    cd /usr/local
-    if [ -f /usr/local/gcc-10.tar.xz ] ; then 
-        echo "Download Done"
-    else
-        wget http://gfortran.meteodat.ch/download/x86_64/snapshots/gcc-10.tar.xz
-    fi
-    tar xvf gcc-10.tar.xz
-    export PATH=/usr/local/gcc-10/bin:/bin:$PATH
-    export LD_LIBRARY_PATH=/usr/local/gcc-10/lib:/usr/local/gcc-10/lib64:$LD_LIBRARY_PATH
-    echo CHECKING WHICH GFORTRAN
-    which gfortran
-    gfortran -v
+    cd /opt
+    git clone git://gcc.gnu.org/git/gcc.git
+    export PATH=/usr/local/bin:$PATH
+    cd gcc
+    ./contrib/download_prerequisites
+    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
+    make -j2
+    make install 
     
     # install FGSL v0.9.4
     cd /opt
