@@ -103,7 +103,31 @@ Stage: build
 #    git clone https://github.com/galacticusorg/datasets.git galacticus_datasets
 #    cd /usr/local/galacticus
 #    make Galacticus.exe
-     
+# Install binary into final image
+Bootstrap: library
+From: centos:latest
+Stage: final
+
+%environment
+    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
+#    export GALACTICUS_EXEC_PATH=/usr/local/galacticus/
+#    export GALACTICUS_DATA_PATH=/usr/local/galacticus_datasets
+%post
+    # install system libraries that are needed at runtime
+    echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib" >> $SINGULARITY_ENVIRONMENT
+#    export GALACTICUS_EXEC_PATH=/usr/local/galacticus/
+#    export GALACTICUS_DATA_PATH=/usr/local/galacticus_datasets" >> $SINGULARITY_ENVIRONMENT
+#    yum -y update 
+    
+%files from build
+    # copy the full installation directory, including the executable
+#    /usr/local/galacticus /usr/local/galacticus 
+    
+    # copy dynamically linked libraries
+    /usr/local/lib64 /usr/local/lib64
+    /usr/lib64 /usr/lib64
+    /usr/local/lib /usr/local/lib
+    
 %labels
     Author ffayton@carnegiescience.edu
     Version v0.0.1
