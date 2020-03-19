@@ -35,28 +35,28 @@ Stage: build
 	XML::Validator::Schema List::MoreUtils \
 	File::Copy File::Slurp File::Next XML::Simple \
 	XML::SAX::Expat XML::SAX::ParserFactory 
-    # scl enable devtoolset-8 bash
+#     scl enable devtoolset-8 bash
     
     # install ISL
-    cd /opt
-    wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.15.tar.bz2
-    tar xjvf isl-0.15.tar.bz2
-    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
-    cd isl-0.15
-    ./configure 
-    make 
-    make install
-    
-    # install GFortran
-    cd /opt
-    git clone git://gcc.gnu.org/git/gcc.git
-    export PATH=/usr/local/bin:$PATH
-    cd gcc
-    ./contrib/download_prerequisites
-    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
-    make -j2
-    make install 
-    
+#    cd /opt
+#    wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.15.tar.bz2
+#    tar xjvf isl-0.15.tar.bz2
+#    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
+#    cd isl-0.15
+#    ./configure 
+#    make 
+#    make install
+#    
+#    # install GFortran
+#    cd /opt
+#    git clone git://gcc.gnu.org/git/gcc.git
+#    export PATH=/usr/local/bin:$PATH
+#    cd gcc
+#    ./contrib/download_prerequisites
+#    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
+#    make -j2
+#    make install 
+#    
 #    # install FGSL v0.9.4
 #    cd /opt
 #    wget https://www.lrz.de/services/software/mathematik/gsl/fortran/download/fgsl-0.9.4.tar.gz
