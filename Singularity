@@ -75,7 +75,9 @@ Stage: build
     wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
     tar -vxzf hdf5-1.12.0.tar.gz
     cd hdf5-1.12.0
-    ./configure --prefix=/usr/local --enable-fortran --enable-build-mode=production
+    ./configure --prefix=/usr/local --enable-fortran --enable-build-mode=production \
+    	CFLAGS="-fno-use-linker-plugin" CXXFLAGS="-fno-use-linker-plugin" \
+    	FCFLAGS="-fno-use-linker-plugin" LDFLAGS="-fno-use-linker-plugin"
     make -j2
     make install
 #
