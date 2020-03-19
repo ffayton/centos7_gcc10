@@ -57,25 +57,25 @@ Stage: build
     make -j2
     make install 
     
-    # install FGSL v0.9.4
-    cd /opt
-    wget https://www.lrz.de/services/software/mathematik/gsl/fortran/download/fgsl-0.9.4.tar.gz
-    tar -vxzf fgsl-0.9.4.tar.gz
-    cd fgsl-0.9.4
-    ./configure --gsl /usr --f90 gfortran --prefix /usr/local
-    make
-    make install
+#    # install FGSL v0.9.4
+#    cd /opt
+#    wget https://www.lrz.de/services/software/mathematik/gsl/fortran/download/fgsl-0.9.4.tar.gz
+#    tar -vxzf fgsl-0.9.4.tar.gz
+#    cd fgsl-0.9.4
+#    ./configure --gsl /usr --f90 gfortran --prefix /usr/local
+#    make
+#    make install
 
-    # install HDF5 v1.8.20
-    cd /opt
-    wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
-    tar -vxzf hdf5-1.12.0.tar.gz
-    cd hdf5-1.12.0
-    ./configure --prefix=/usr/local --enable-fortran --enable-build-mode=production \
-    	CFLAGS="-fno-use-linker-plugin" CXXFLAGS="-fno-use-linker-plugin" \
-    	FCFLAGS="-fno-use-linker-plugin" LDFLAGS="-fno-use-linker-plugin"
-    make -j2
-    make install
+#    # install HDF5 v1.8.20
+#    cd /opt
+#    wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
+#    tar -vxzf hdf5-1.12.0.tar.gz
+#    cd hdf5-1.12.0
+#    ./configure --prefix=/usr/local --enable-fortran --enable-build-mode=production \
+#    	CFLAGS="-fno-use-linker-plugin" CXXFLAGS="-fno-use-linker-plugin" \
+#    	FCFLAGS="-fno-use-linker-plugin" LDFLAGS="-fno-use-linker-plugin"
+#    make -j2
+#    make install
 #
 #    # install FoX v4.1.0
 #    cd /opt
