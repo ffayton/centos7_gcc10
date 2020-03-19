@@ -37,26 +37,16 @@ Stage: build
 	XML::SAX::Expat XML::SAX::ParserFactory 
 #     scl enable devtoolset-8 bash
     
-    # install ISL
-#    cd /opt
-#    wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.15.tar.bz2
-#    tar xjvf isl-0.15.tar.bz2
-#    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
-#    cd isl-0.15
-#    ./configure 
-#    make 
-#    make install
-#    
-#    # install GFortran
-#    cd /opt
-#    git clone git://gcc.gnu.org/git/gcc.git
-#    export PATH=/usr/local/bin:$PATH
-#    cd gcc
-#    ./contrib/download_prerequisites
-#    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
-#    make -j2
-#    make install 
-#    
+    # install GFortran
+    cd /opt
+    git clone git://gcc.gnu.org/git/gcc.git
+    export PATH=/usr/local/bin:$PATH
+    cd gcc
+    ./contrib/download_prerequisites
+    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
+    make -j2
+    make install 
+    
 #    # install FGSL v0.9.4
 #    cd /opt
 #    wget https://www.lrz.de/services/software/mathematik/gsl/fortran/download/fgsl-0.9.4.tar.gz
@@ -103,30 +93,6 @@ Stage: build
 #    git clone https://github.com/galacticusorg/datasets.git galacticus_datasets
 #    cd /usr/local/galacticus
 #    make Galacticus.exe
-# Install binary into final image
-Bootstrap: library
-From: centos:latest
-Stage: final
-
-%environment
-    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
-#    export GALACTICUS_EXEC_PATH=/usr/local/galacticus/
-#    export GALACTICUS_DATA_PATH=/usr/local/galacticus_datasets
-%post
-    # install system libraries that are needed at runtime
-    echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib" >> $SINGULARITY_ENVIRONMENT
-#    export GALACTICUS_EXEC_PATH=/usr/local/galacticus/
-#    export GALACTICUS_DATA_PATH=/usr/local/galacticus_datasets" >> $SINGULARITY_ENVIRONMENT
-#    yum -y update 
-    
-%files from build
-    # copy the full installation directory, including the executable
-#    /usr/local/galacticus /usr/local/galacticus 
-    
-    # copy dynamically linked libraries
-    /usr/local/lib64 /usr/local/lib64
-    /usr/lib64 /usr/lib64
-    /usr/local/lib /usr/local/lib
     
 %labels
     Author ffayton@carnegiescience.edu
