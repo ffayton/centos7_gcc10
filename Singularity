@@ -72,7 +72,7 @@ Stage: build
 
     # install HDF5 v1.8.20
     cd /opt
-    wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12.0/hdf5-1.12/src/hdf5-1.12.0.tar.gz
+    wget https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.12/hdf5-1.12.0/src/hdf5-1.12.0.tar.gz
     tar -vxzf hdf5-1.12.0.tar.gz
     cd hdf5-1.12.0
     ./configure --prefix=/usr/local --enable-fortran --enable-build-mode=production
