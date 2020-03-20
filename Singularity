@@ -43,7 +43,7 @@ From: centos:latest
     ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
     make -j2
     make install 
-    make clean
+
     
 #    # install FGSL v0.9.4
 #    cd /opt
