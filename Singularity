@@ -36,7 +36,8 @@ From: centos:latest
     
     # install GFortran
     cd /opt
-    git clone git://gcc.gnu.org/git/gcc.git
+#    git clone git://gcc.gnu.org/git/gcc.git
+    git clone https://github.com/gcc-mirror/gcc.git
     export PATH=/usr/local/bin:$PATH
     cd gcc
     ./contrib/download_prerequisites
