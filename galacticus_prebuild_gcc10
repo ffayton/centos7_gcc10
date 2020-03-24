@@ -25,7 +25,7 @@ From: ffayton/default/gcc10:latest
         zlib-devel gcc mercurial openssh-clients gfortran \
 	centos-release-scl
     yum -y install devtoolset-8
-    cpanm -i Config::Tiny YAML Cwd DateTime \
+    cpanm -i Config::Tiny YAML Cwd DateTime PDL \
 	LaTeX::Encode NestedMap Scalar::Util \
 	Data::Dumper Term::ANSIColor Module::New::File::Changes \
 	Text::Table Sort::Topological Text::Template \
