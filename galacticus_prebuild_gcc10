@@ -34,7 +34,7 @@ From: ffayton/default/gcc10:latest
 	XML::Validator::Schema List::MoreUtils List::Util \
 	File::Copy File::Slurp File::Next XML::Simple \
 	XML::SAX::Expat XML::SAX::ParserFactory MIME::Lite \
-	Net::SMTP PDL::Constants PDL::IO PDL::IO::HDF5 PDL::NiceSlice \
+	Net::SMTP PDL::Constants PDL::IO::HDF5 PDL::NiceSlice \
 	PDL::Stats Term::ReadKey PDL::IO::Misc
     
     # install GFortran
