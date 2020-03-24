@@ -14,7 +14,38 @@ From: ffayton/default/gcc10:latest
     export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH" >> $SINGULARITY_ENVIRONMENT
     export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH
     export PATH=/usr/local/bin:/usr/local/galacticus:$PATH
+    yum -y update
+    yum -y install epel-release
+    yum -y install perl perl-App-cpanminus \
+    	vim wget make tar gzip bzip2 gsl gsl-devel texinfo \
+	glibc-devel.i686 glibc-devel vim flex \
+    	wget make tar gzip bzip2 gsl texinfo hostname \
+    	mercurial openssh-clientsblas blas-devel lapack gcc-c++ \
+        file expat-devel perl-XML* patch gmp gmp-devel git \
+        zlib-devel gcc mercurial openssh-clients gfortran \
+	centos-release-scl
+    yum -y install devtoolset-8
+    cpanm -i Config::Tiny YAML Cwd DateTime \
+	LaTeX::Encode NestedMap Scalar::Util \
+	Data::Dumper Term::ANSIColor Module::New::File::Changes \
+	Text::Table Sort::Topological Text::Template \
+	Sort::Topological List::Uniq Regexp::Common \
+	XML::Validator::Schema List::MoreUtils \
+	File::Copy File::Slurp File::Next XML::Simple \
+	XML::SAX::Expat XML::SAX::ParserFactory 
     
+    # install GFortran
+    cd /opt
+#    git clone git://gcc.gnu.org/git/gcc.git
+    git clone https://github.com/gcc-mirror/gcc.git
+    export PATH=/usr/local/bin:$PATH
+    cd gcc
+    ./contrib/download_prerequisites
+    ./configure --prefix=/usr/local --enable-languages=c,c++,fortran --enable-multilib
+    make -j2
+    make install 
+    rm -rf /opt/gcc
+
     if [ "$(gfortran -dumpversion)" == "10.0.1" ] ; then echo "GCC-10 being used to compile" ; else exit 1; fi
     
     # install FGSL v0.9.4
