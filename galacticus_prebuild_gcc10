@@ -35,8 +35,7 @@ From: ffayton/default/gcc10:latest
 	File::Copy File::Slurp File::Next XML::Simple \
 	XML::SAX::Expat XML::SAX::ParserFactory MIME::Lite \
 	Net::SMTP PDL::Constants PDL::IO PDL::IO::HDF5 PDL::NiceSlice \
-	PDL::Stats Stats::Histograms Stats::Percentiles \
-	System::Redirect Term::ReadKey PDL::IO::Misc
+	PDL::Stats Term::ReadKey PDL::IO::Misc
     
     # install GFortran
     cd /opt
