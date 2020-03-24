@@ -25,14 +25,18 @@ From: ffayton/default/gcc10:latest
         zlib-devel gcc mercurial openssh-clients gfortran \
 	centos-release-scl
     yum -y install devtoolset-8
-    cpanm -i Config::Tiny YAML Cwd DateTime PDL \
-	LaTeX::Encode NestedMap Scalar::Util \
-	Data::Dumper Term::ANSIColor Module::New::File::Changes \
+    cpanm -i Config::Tiny YAML Cwd DateTime PDL GnuPlot::PrettyPlots \
+	LaTeX::Encode NestedMap Scalar::Util GnuPlot::LaTeX \
+	Data::Dumper Data::Format Term::ANSIColor \
+	Module::New::File::Changes File::Find File::Which \
 	Text::Table Sort::Topological Text::Template \
 	Sort::Topological List::Uniq Regexp::Common \
-	XML::Validator::Schema List::MoreUtils \
+	XML::Validator::Schema List::MoreUtils List::Util \
 	File::Copy File::Slurp File::Next XML::Simple \
-	XML::SAX::Expat XML::SAX::ParserFactory 
+	XML::SAX::Expat XML::SAX::ParserFactory MIME::Lite \
+	Net::SMTP PDL::Constants PDL::IO PDL::IO::HDF5 PDL::NiceSlice \
+	PDL::Stats Stats::Histograms Stats::Percentiles \
+	System::Redirect Term::ReadKey PDL::IO::Misc
     
     # install GFortran
     cd /opt
