@@ -9,11 +9,9 @@ From: ffayton/default/gcc10:latest
 
 %post
     NOW=`date`
-    echo "export NOW=\"${NOW}\"
-    export PATH=/usr/local/bin:/usr/local/galacticus:$PATH
-    export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH" >> $SINGULARITY_ENVIRONMENT
-    export LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:$LD_LIBRARY_PATH
-    export PATH=/usr/local/bin:/usr/local/galacticus:$PATH
+    echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
+    echo "export PATH=/usr/local/bin:/usr/local/gcc-10/bin:$PATH" >> $SINGULARITY_ENVIRONMENT
+    echo "export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib " >> $SINGULARITY_ENVIRONMENT
     yum -y update
     yum -y install epel-release
     yum -y install perl perl-App-cpanminus \
@@ -25,7 +23,6 @@ From: ffayton/default/gcc10:latest
         zlib-devel gcc mercurial openssh-clients gfortran \
 	centos-release-scl
     yum -y install devtoolset-8
-    pip3 install zstd
     cpanm -i Config::Tiny YAML Cwd DateTime PDL \
 	LaTeX::Encode NestedMap Scalar::Util \
 	Data::Dumper Data::Format Term::ANSIColor \
