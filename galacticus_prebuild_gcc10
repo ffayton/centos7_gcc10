@@ -25,6 +25,7 @@ From: ffayton/default/gcc10:latest
         zlib-devel gcc mercurial openssh-clients gfortran \
 	centos-release-scl
     yum -y install devtoolset-8
+    pip3 install zstd
     cpanm -i Config::Tiny YAML Cwd DateTime PDL \
 	LaTeX::Encode NestedMap Scalar::Util \
 	Data::Dumper Data::Format Term::ANSIColor \
