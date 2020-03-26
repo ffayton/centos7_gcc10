@@ -102,7 +102,18 @@ From: ffayton/default/gcc10:latest
     export CXX=/usr/local/bin/g++
     make linux-g++
     cp bin/* /usr/local/bin/
-
+    
+    # install Galacticus
+    export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib64:/usr/lib64:/usr/local/lib
+    export GALACTICUS_EXEC_PATH=/usr/local/galacticus/
+    export GALACTICUS_DATA_PATH=/usr/local/galacticus_datasets
+    cd /usr/local
+    git clone https://github.com/galacticusorg/galacticus.git
+    git clone https://github.com/galacticusorg/datasets.git galacticus_datasets
+    cd /usr/local/galacticus
+    if [ "$(gfortran -dumpversion)" == "10.0.1" ] ; then echo yes; fi
+    make clean
+    make -j16 Galacticus.exe
 
 %labels
     Author ffayton@carnegiescience.edu
